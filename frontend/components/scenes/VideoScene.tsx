@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { Play, X } from 'lucide-react';
 import { mockData } from '@/lib/mock';
 import type { Video } from '@/lib/types';
+import type { SceneProps } from '../BirthdayExperience';
 
-const VideoScene: React.FC = () => {
+const VideoScene: React.FC<SceneProps> = ({ setMusicOn }) => {
   const [selected, setSelected] = useState<Video | null>(null);
 
   const video = mockData.videos[0];
@@ -26,11 +27,14 @@ const VideoScene: React.FC = () => {
           </p>
         </header>
 
-        {/* SINGLE VIDEO */}
+        {/* VIDEO CARD */}
         <div className="flex justify-center">
           <button
             type="button"
-            onClick={() => setSelected(video)}
+            onClick={() => {
+              setSelected(video);
+              setMusicOn?.(false); // 🔥 PAUSE MUSIC
+            }}
             className="group w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl bg-white border border-rose-100 hover:shadow-2xl transition-all hover:-translate-y-1"
           >
             <div className="relative aspect-[16/9] overflow-hidden">
@@ -42,17 +46,14 @@ const VideoScene: React.FC = () => {
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
 
-              {/* overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-rose-900/70 via-rose-900/10 to-transparent" />
 
-              {/* play button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-white/95 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 text-rose-500 ml-1" />
                 </div>
               </div>
 
-              {/* duration */}
               <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-900/70 text-white text-xs">
                 {video.duration}
               </div>
@@ -67,22 +68,28 @@ const VideoScene: React.FC = () => {
         </div>
       </div>
 
-      {/* MODAL VIDEO */}
+      {/* MODAL */}
       {selected && (
         <div
           className="fixed inset-0 bg-rose-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-6 animate-fade-in"
-          onClick={() => setSelected(null)}
+          onClick={() => {
+            setSelected(null);
+            setMusicOn?.(true); // 🔥 RESUME MUSIC
+          }}
         >
-          {/* close button */}
+          {/* CLOSE */}
           <button
             type="button"
             className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
-            onClick={() => setSelected(null)}
+            onClick={() => {
+              setSelected(null);
+              setMusicOn?.(true); // 🔥 RESUME MUSIC
+            }}
           >
             <X className="w-5 h-5" />
           </button>
 
-          {/* video container */}
+          {/* VIDEO */}
           <div
             className="max-w-4xl w-full"
             onClick={(e) => e.stopPropagation()}

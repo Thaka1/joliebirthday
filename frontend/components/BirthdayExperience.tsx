@@ -14,6 +14,7 @@ import {
   Gift,
   type LucideIcon,
 } from 'lucide-react';
+
 import WelcomeScene from './scenes/WelcomeScene';
 import GalleryScene from './scenes/GalleryScene';
 import LetterScene from './scenes/LetterScene';
@@ -22,11 +23,21 @@ import MusicScene from './scenes/MusicScene';
 import VideoScene from './scenes/VideoScene';
 import FinaleScene from './scenes/FinaleScene';
 
+
+// ✅ PROPS DARI PAGE.TSX
+interface Props {
+  setMusicOn: (on: boolean) => void;
+}
+
+// ✅ PROPS UNTUK SEMUA SCENE
 export interface SceneProps {
   onNext: () => void;
   onPrev: () => void;
   goTo: (i: number) => void;
   index: number;
+
+  // 🔥 TAMBAHAN UNTUK CONTROL MUSIC
+  setMusicOn?: (on: boolean) => void;
 }
 
 interface SceneDef {
@@ -46,7 +57,7 @@ const SCENES: SceneDef[] = [
   { id: 'finale', label: 'Wish', icon: Gift, Component: FinaleScene },
 ];
 
-const BirthdayExperience: React.FC = () => {
+const BirthdayExperience: React.FC<Props> = ({ setMusicOn }) => {
   const [index, setIndex] = useState(0);
   const [transitionKey, setTransitionKey] = useState(0);
 
@@ -82,7 +93,7 @@ const BirthdayExperience: React.FC = () => {
       }}
       data-testid="birthday-experience"
     >
-      {/* Ambient floating hearts */}
+      {/* 💖 FLOATING HEARTS */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 14 }).map((_, i) => (
           <div
@@ -100,26 +111,23 @@ const BirthdayExperience: React.FC = () => {
         ))}
       </div>
 
-      <nav
-        className="fixed top-5 left-1/2 -translate-x-1/2 z-30 max-w-[95vw]"
-        data-testid="scene-nav"
-      >
+      {/* 🧭 TOP NAV */}
+      <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-30 max-w-[95vw]">
         <div className="flex items-center gap-1 px-3 py-2 rounded-full bg-white/75 backdrop-blur-xl border border-rose-200 shadow-lg overflow-x-auto">
           {SCENES.map((s, i) => {
             const Icon = s.icon;
             const active = i === index;
+
             return (
               <button
                 key={s.id}
                 type="button"
                 onClick={() => goTo(i)}
-                data-testid={`nav-${s.id}`}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-full whitespace-nowrap text-xs font-medium tracking-wide transition-all ${
                   active
                     ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md'
                     : 'text-rose-600 hover:bg-rose-50'
                 }`}
-                title={s.label}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{s.label}</span>
@@ -129,43 +137,45 @@ const BirthdayExperience: React.FC = () => {
         </div>
       </nav>
 
+      {/* 🎬 CURRENT SCENE */}
       <div key={transitionKey} className="relative z-10 min-h-screen animate-scene-enter">
-        <Current onNext={next} onPrev={prev} goTo={goTo} index={index} />
+        <Current
+          onNext={next}
+          onPrev={prev}
+          goTo={goTo}
+          index={index}
+          setMusicOn={setMusicOn} // 🔥 PENTING
+        />
       </div>
 
+      {/* ⬅️ PREV */}
       {index > 0 && (
         <button
-          type="button"
           onClick={prev}
-          data-testid="prev-scene-btn"
           className="fixed left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white backdrop-blur-md border border-rose-200 text-rose-500 shadow-lg flex items-center justify-center transition-all hover:scale-110"
-          aria-label="Previous scene"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
       )}
+
+      {/* ➡️ NEXT */}
       {index < SCENES.length - 1 && (
         <button
-          type="button"
           onClick={next}
-          data-testid="next-scene-btn"
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white shadow-xl flex items-center justify-center transition-all hover:scale-110 animate-glow"
-          aria-label="Next scene"
+          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-xl flex items-center justify-center transition-all hover:scale-110"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       )}
 
+      {/* 🔘 DOT NAV */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-md border border-rose-100 shadow">
         {SCENES.map((s, i) => (
           <button
             key={s.id}
-            type="button"
             onClick={() => goTo(i)}
-            data-testid={`dot-${s.id}`}
-            aria-label={`Go to ${s.label}`}
             className={`h-2.5 rounded-full transition-all ${
-              i === index ? 'bg-rose-500 w-6' : 'bg-rose-200 hover:bg-rose-300 w-2.5'
+              i === index ? 'bg-rose-500 w-6' : 'bg-rose-200 w-2.5'
             }`}
           />
         ))}

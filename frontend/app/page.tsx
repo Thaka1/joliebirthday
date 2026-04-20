@@ -63,7 +63,7 @@ export default function HomePage() {
       {/* MAIN EXPERIENCE */}
       {phase === 'experience' && (
         <>
-          <BirthdayExperience />
+          <BirthdayExperience setMusicOn={setMusicOn} />
 
           {/* 🎧 GLOBAL MUSIC CONTROL */}
           <MusicPlayer

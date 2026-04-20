@@ -89,7 +89,7 @@ const FinaleScene: React.FC = () => {
               Happy Birthday,{' '}
               <span className="shimmer-text font-semibold">{mockData.person.nickname}</span>.
               <br />
-              May your wish come true — and Always Happy hehe
+              May your wish come true — in the most beautiful way
             </p>
             <p className="font-script text-3xl text-rose-500 mt-6">
               — {mockData.person.fromName} ♡

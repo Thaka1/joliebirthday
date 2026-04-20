@@ -17,15 +17,22 @@ export const mockData: MockData = {
 
   photos: [
     { id: 1, url: '/images/fanart.jpg', caption: 'Birthday Drawing for you', date: '2026' },
-    { id: 2, url: '/images/moment2.webp', caption: 'Chaos party back then-REVE', date: '2023' },
-    { id: 3, url: '/images/moment3.webp', caption: "Playing music-REVE", date: '2026' },
-    { id: 4, url: '/images/moment4.webp', caption: 'Someone feel asleep-REVE', date: '2026' },
-    { id: 5, url: '/images/moment5.webp', caption: 'Pic of best Duo on HOK lol', date: '2025' },
-    { id: 6, url: '/images/moment6.webp', caption: 'Explore together and meeting smol XD-CODL', date: '2025' },
-    { id: 7, url: '/images/moment7.webp', caption: 'Under the rain-MLB', date: '2025' },
-    { id: 8, url: '/images/moment8.webp', caption: 'Both of us on a swing during sunset-SOJ', date: '2025' },
-    { id: 9, url: '/images/moment9.webp', caption: 'Green outfit-SOJ', date: '2025' },
-    { id: 10, url: '/images/moment10.webp', caption: 'hehe i put this as closing', date: '2025' },
+    { id: 2, url: '/images/moment2.webp', caption: 'Chaos party back then', date: '2023' },
+    { id: 3, url: '/images/moment3.webp', caption: "Playing music", date: '2025' },
+    { id: 4, url: '/images/moment4.webp', caption: 'Someone feel asleep', date: '2025' },
+    { id: 5, url: '/images/moment20.webp', caption: 'Chilling with musek', date: '2025' },
+    { id: 6, url: '/images/moment6.webp', caption: 'Explore together and meeting smol XD', date: '2025' },
+    { id: 7, url: '/images/moment21.webp', caption: 'Spending time together', date: '2025' },
+    { id: 8, url: '/images/moment8.webp', caption: 'Both of us on a swing during sunset', date: '2025' },
+    { id: 9, url: '/images/moment9.webp', caption: 'Green outfit', date: '2025' },
+    { id: 10, url: '/images/moment18.webp', caption: 'Cute Pose', date: '2025' },
+    { id: 11, url: '/images/moment11.webp', caption: 'Nice Sunset Pic', date: '2025' },
+    { id: 12, url: '/images/moment12.webp', caption: 'Looking at this Cutie', date: '2025' },
+    { id: 13, url: '/images/moment13.webp', caption: 'Yearning Sect Outfit Pic', date: '2025' },
+    { id: 14, url: '/images/moment14.webp', caption: 'Watermelon Outfit and Sunset', date: '2025' },
+    { id: 15, url: '/images/moment15.webp', caption: 'I carry Pretty girl', date: '2025' },
+    { id: 16, url: '/images/moment16.webp', caption: 'Emotional Pic Right here', date: '2025' },
+    { id: 17, url: '/images/moment17.webp', caption: 'I put this as Closing hehehe', date: '2025' },
   ] satisfies Photo[],
 
   letter: {
@@ -120,10 +127,10 @@ always healthy, always protected, always guided, always find peace and joy, and 
   videos: [
   {
     id: 1,
-    title: 'A small journey video',
+    title: 'A small moment video',
     thumbnail: '/images/thumbnailyt.webp',
-    duration: '2:14',
-    youtubeId: 'TqBXZtgnKL4'
+    duration: '2:15',
+    youtubeId: '4RIfV-T0NYs'
   }
 ] satisfies Video[],
 };

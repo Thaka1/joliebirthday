@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Cormorant_Garamond, Dancing_Script } from 'next/font/google';
 import './globals.css';
 
@@ -27,12 +27,16 @@ const dancing = Dancing_Script({
 export const metadata: Metadata = {
   title: 'Happy Birthday, Hà ♡',
   description: 'A little romantic surprise — seven scenes made with love.',
-  themeColor: '#fff1f2',
   openGraph: {
     title: 'Happy Birthday, Hà ♡',
     description: 'A little romantic surprise — seven scenes made with love.',
     type: 'website',
   },
+};
+
+// ✅ PINDAH KE SINI
+export const viewport: Viewport = {
+  themeColor: '#fff1f2',
 };
 
 export default function RootLayout({
