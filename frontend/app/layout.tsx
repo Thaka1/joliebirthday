@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Cormorant_Garamond, Dancing_Script } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 const inter = Inter({
@@ -49,7 +50,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${cormorant.variable} ${dancing.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
